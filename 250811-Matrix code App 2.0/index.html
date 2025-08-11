@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrix-style Profile Stream</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background canvas for Matrix rain -->
+    <canvas id="rain"></canvas>
+
+    <!-- Overlay: scanlines and flicker -->
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="flicker" aria-hidden="true"></div>
+
+    <!-- No DOM capsules anymore; all rendering is on the canvas -->
+
+    <!-- Controls -->
+    <div id="controls" class="panel">
+      <div class="row header">
+        <span>PROFILE_STREAM</span>
+        <button id="btnShot" title="Screenshot current frame">Screenshot</button>
+      </div>
+      <div class="row">
+        <label>Density <input id="density" type="range" min="0.2" max="2.0" step="0.05" value="1.0" /></label>
+      </div>
+      <div class="row">
+        <label>Speed <input id="speed" type="range" min="0.5" max="3.0" step="0.05" value="1.0" /></label>
+      </div>
+      <div class="row">
+        <label>Glow <input id="glow" type="range" min="0" max="1.0" step="0.05" value="0.6" /></label>
+      </div>
+      <div class="row">
+        <label>Rain Mode
+          <select id="mode">
+            <option value="file" selected>File</option>
+            <option value="glyph">Glyph</option>
+          </select>
+        </label>
+        <label>StringStyle
+          <select id="stringStyle">
+            <option value="json">JSON</option>
+            <option value="kv">KV</option>
+            <option value="code">Code</option>
+          </select>
+        </label>
+        <label>Source
+          <select id="source">
+            <option value="fake" selected>fake</option>
+            <option value="nyc">nyc</option>
+          </select>
+        </label>
+      </div>
+      <div class="row">
+        <label>Strip Width <input id="stripWidth" type="range" min="240" max="480" step="10" value="420" /></label>
+        <label>Font Size <input id="fontSize" type="range" min="12" max="20" step="1" value="14" /></label>
+        <label>Line Height <input id="lineHeight" type="range" min="14" max="26" step="1" value="18" /></label>
+      </div>
+      <div class="row">
+        <label>Borough
+          <select id="borough">
+            <option value="">All</option>
+            <option>Manhattan</option>
+            <option>Brooklyn</option>
+            <option>Queens</option>
+            <option>Bronx</option>
+            <option>Staten Island</option>
+          </select>
+        </label>
+        <label>NTA <input id="nta" placeholder="e.g., MN013" /></label>
+        <button id="btnRefresh" title="Refresh profile data">Refresh Data</button>
+      </div>
+      <div class="row">
+        <label>Theme
+          <select id="theme">
+            <option value="green" selected>Green</option>
+            <option value="cyan">Cyan</option>
+            <option value="magenta">Magenta</option>
+          </select>
+        </label>
+        <label><input id="showFps" type="checkbox" /> FPS</label>
+      </div>
+    </div>
+
+    <!-- Small FPS meter -->
+    <div id="fps" aria-hidden="true">00 fps</div>
+
+    <script src="data/nyc.js"></script>
+    <script src="main.js"></script>
+  </body>
+  </html>
+
+
